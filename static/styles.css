@@ -1,0 +1,188 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  color: white
+}
+
+
+header {
+
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+nav {
+  background-color: black;
+  padding: 30px;
+  text-align: center;
+  width: 50%;
+  float: right;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 15px;
+  margin: 0 10px;
+  font-weight: bold;
+  font-size: 20px
+}
+
+section {
+  padding: 20px;
+}
+
+.gallery {
+
+  width: 80%;
+  height: auto;
+  margin-left: 10%;
+  float: left;
+  align-items: center;
+  justify-content: center;
+
+
+}
+#plakat{
+
+  margin: 0;
+  padding: 10px;
+  width: 23%;
+  height: auto
+  font-size: 20px;
+  text-align: left;
+  float: inherit;
+
+
+}
+#obrazek:hover{opacity: 0;
+image-resolution: from-image
+}
+.promo {
+  width: 15%;
+  height: auto;
+  float: left
+}
+
+#promki{width:100% ;
+  height: auto;
+  float: left;
+  align-content: center;
+  font-size: 30px;
+  text-align: center;
+  color: black;
+}
+img {
+  max-width: 100%;
+  float: left;
+  height: auto;
+  margin: 20px;
+}
+#bilety{
+  width: 300px;
+  height: auto;
+  background-color: red;
+  color: #fff;
+  text-align: center;
+  padding: 1px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+footer {
+  width: 100%;
+  float: left;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+
+}
+p{
+  text-align: center
+}
+h4{
+  font-size: 13px;
+  color: darkgray
+}
+a{color: white}
+
+/* Spoderman Style */
+
+.movie-container {
+  display: flex;
+  align-items: flex-start;
+  padding: 20px;
+  color: white; 
+  background-color: black; 
+}
+.movie-image {
+  flex: 1;
+  text-align: center;
+}
+#movie-poster {
+  width: auto; /* Adjust as needed */
+  height: 500px; /* Adjust as needed */
+}
+.movie-details {
+  flex: 2;
+  padding-left: 20px;
+}
+.categories {
+  font-style: italic;
+}
+.movie-description summary,
+.cinema-list summary {
+  cursor: pointer;
+  color: aqua; /* Or any other color from your styles.css */
+}
+.additional-info {
+  margin-top: 20px;
+}
+.select-cinema {
+margin: 20px 0;
+}
+.select-cinema label {
+display: block;
+margin-bottom: 10px;
+color: white; /* Adjust the color to match your design */
+}
+.select-cinema select {
+width: 100%;
+padding: 10px;
+background-color: #333; /* Dark background */
+color: white; /* Light text */
+border: 1px solid #444; /* Slight border for visibility */
+border-radius: 5px; /* Rounded corners */}
+.showtime {
+  background-color: #333; /* ciemnofioletowe tło */
+  color: #FFFFFF; /* biały tekst */
+  border: 1px solid #640F5F; /* biała obramówka */
+  margin: 5px; /* odstępy między kafelkami */
+  padding: 20px; /* padding wewnątrz kafelków */
+  text-align: center; /* wyśrodkowany tekst */
+  font-weight: bold; /* pogrubiona czcionka */
+  font-size: 1.1em; /* nieco większa czcionka */
+  border-radius: 2px; /* zaokrąglenie rogów */
+  cursor: pointer; /* zmiana kursora na wskaźnik */
+  transition: transform 0.3s; /* animacja transformacji */
+}
+
+.showtime:hover {
+  transform: scale(1.05); /* lekkie powiększenie przy najechaniu */
+}
+
+#showtimes-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* wyśrodkowanie kafelków */
+}
+
+  

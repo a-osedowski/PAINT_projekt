@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Cennik</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css"> <!-- Make sure this path is correct -->
+
+  <!-- Add additional styles if needed -->
+</head>
+
+<body>
+  <header>
+
+    <a href="index.html">
+      <h1 style="width: 30%;float: left;color: orange">KinoMiasto</h1>
+    </a>
+    <nav>
+      <a href="#">Strona główna</a>
+      <a href="#">Repertuar</a>
+      <a href="cennik.html">Cennik</a>
+      <a href="#">Kontakt</a>
+    </nav>
+  </header>
+
+  <main>
+    <div style="width:95%;float: left;" class="movie-container">
+
+
+      <div class="movie-image">
+        <img style="width:90%;float: left;opacity: 0.8" src="i1.jpg" alt="ludzie_kino">
+      </div>
+
+
+      <div style="text-align: center; width:80%;float: right;" class="movie-details">
+        <h1>Cennik</h1>
+
+        <style type="text/css">
+          .tg {
+            border-collapse: collapse;
+            border-spacing: 0;
+          }
+
+          .tg td {
+            border-color: black;
+            border-style: solid;
+            border-width: 1px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            overflow: hidden;
+            padding: 10px 5px;
+            word-break: normal;
+          }
+
+          .tg th {
+            border-color: black;
+            border-style: solid;
+            border-width: 1px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            overflow: hidden;
+            padding: 10px 5px;
+            word-break: normal;
+          }
+
+          .tg .tg-8b77 {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: Verdana, Geneva, sans-serif !important;
+            font-size: 28px;
+            text-align: right;
+            vertical-align: top
+          }
+
+          .tg .tg-va9g {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: Verdana, Geneva, sans-serif !important;
+            font-size: 28px;
+            text-align: center;
+            vertical-align: top
+          }
+        </style>
+        <table class="tg" style="undefined;table-layout: fixed; width: 934px">
+          <colgroup>
+            <col style="width: 279.2px">
+            <col style="width: 362.2px">
+            <col style="width: 292.2px">
+          </colgroup>
+          <thead>
+            <tr>
+              <th class="tg-va9g"></th>
+              <th class="tg-va9g">Bilet normalny</th>
+              <th class="tg-va9g">Bilet ulgowy</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tg-8b77">Cena za 1 bilet</td>
+              <td class="tg-va9g">25,5 zł</td>
+              <td class="tg-va9g">17,5 zł</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>Do każdego biletu zakupionego przez stronę internetową oraz aplikację mobilną doliczona zostanie oplata
+          internetowa w wysokości 1,50 zł, w skład której wchodzą: koszty serwisu dostarczenia i realizacji biletu.</p>
+      </div>
+
+
+    </div>
+
+  </main>
+
+
+  <section id="bilety">
+    <a href="">
+      <h1>KUP BILETY</h1>
+    </a>
+  </section>
+
+
+
+
+
+
+
+  <script>
+    var cinemaSelect = document.getElementById('cinemaSelect');
+    var showtimesContainer = document.getElementById('showtimes-container');
+
+    // This function updates the showtimes when a cinema is selected
+    function updateShowtimes(cinema) {
+      // Clear existing showtimes
+      showtimesContainer.innerHTML = '';
+
+      // Here you would typically get these showtimes from a server or define them for each cinema
+      var showtimes = {
+        'mlociny': ['10:00', '10:50', '11:50', '12:35', '13:40', '14:40', '15:30', '16:30', '17:30', '19:20', '20:20'],
+        // Add showtimes for other cinemas as needed
+      };
+      // Check if the selected cinema has showtimes defined
+      if (showtimes[cinema]) {
+        // Loop over the showtimes and create elements for each
+        showtimes[cinema].forEach(function (time) {
+          var showtimeDiv = document.createElement('div');
+          showtimeDiv.className = 'showtime';
+          showtimeDiv.innerHTML = `<span class="time">${time}</span><span class="format"> 2D, PL</span>`;
+          showtimesContainer.appendChild(showtimeDiv);
+        });
+      }
+    }
+
+    // Add an event listener to the select element
+    cinemaSelect.addEventListener('change', function () {
+      updateShowtimes(this.value);
+    });
+
+    // Initialize with the first cinema's showtimes
+    updateShowtimes(cinemaSelect.value);
+  </script>
+</body>
+
+</html>

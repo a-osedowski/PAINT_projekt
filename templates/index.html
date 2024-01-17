@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={% static "styles.css" %}>
+    <script src="{% static "script.js" %}"></script>
+    <title>Kino</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+
+    <header>
+         
+        <h1 style="width: 30%;float: left;color: orange">KinoMiasto</h1>
+        <nav>
+        <a href="#">Strona główna</a>
+        <a href="#">Repertuar</a>
+        <a href="{% url 'cennik' %}" >Cennik</a>
+        <a href="#">Kontakt</a>
+        </nav>
+    </header>
+    
+   
+
+    <section>
+        <iframe width="100%" height="500" src="https://www.youtube.com/embed/x5yrTNrS6Vo?si=0-qyhwJbb28mh0ia&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </section>
+    <div style="float: left;width: 10%;padding-top: 30px;padding-left: 30px"><hr></div><div style="float: left;width: 15%;text-align: center"><h1 >Repertuar</h1></div><div style="float: left;width: 70%;padding-top: 30px"><hr></div>
+     <section class="gallery">
+         
+       <div id="plakat">
+           <a href="spoderman.html">
+               <img src="{% static "spider-man.jpg" %}" alt="Plakat Spider-man" ><br>
+           </a>
+           <p>Spider-Man: Poprzez multiwersum</p>
+           <h4>Animacja, Akcja, Przygodowy, Sci-Fi <br> 2h 20m</h4>
+       </div>
+
+        <div id="plakat"><img src="{% static "aqua.jpg" %}" alt="Plakat Aquaman">
+            <p>Aquaman i Zaginione Królestwo</p><h4>Akcja, Przygodowy, Fantasy <br> 2h 4m</h4>
+         </div>
+         
+        <div id="plakat"><img  src="{% static "ballada.jpg" %}" alt="Plakat Ballada ptaków i węży">
+            <p>Igrzyska śmierci: Ballada ptaków i węży</p><h4>Dramat, Sci-Fi, Akcja <br> 2h 37m</h4>
+            
+         </div>
+         <div id="plakat"><img src="{% static "wonka.jpg" %}" alt="Plakat Wonka">
+             <p>Wonka</p><h4>Komedia, Familijny, Fantasy <br> 1h 57m</h4></div>
+            
+         </section>
+    <section class="gallery">
+        
+            <div id="plakat"><img src="{% static "barbie.jpg" %}" alt="Plakat Barbie">
+            <p>Barbie</p><h4>Komedia, Przygodowy, Fantasy <br> 1h 54m</h4></div>
+         <div id="plakat"><img src="{% static "oppenheimer.jpg" %}" alt="Plakat Oppenheimer">
+            <p>Oppenheimer</p><h4>Dramat, Historyczny <br>
+3h 1m</h4></div>
+        <div id="plakat"><img src="{% static "szybcy.jpg" %}" alt="Plakat Szybcy i wściekli">
+            <p>Szybcy i wściekli 10</p><h4>Akcja, Kryminał, Thriller<br>
+2h 21m</h4></div>
+        <div id="plakat"><div id="kup"><img src="{% static "zywioly.jpg" %}" alt="Plakat Między nami żywiołami"></div>
+            <p>Między nami żywiołami</p>
+            <h4>Animacja, Komedia, Familijny, Fantasy, Romans <br> 1h 42m</h4></div>
+          
+       </section>
+
+    
+<div id="adres"></div>
+    <footer style="height: 90px">
+        &copy; 2024 Kino
+    </footer>
+<section id="bilety">
+    <a href=""><h1>KUP BILETY</h1></a></section>
+
+  
+</body>
+</html>
