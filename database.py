@@ -1,92 +1,12 @@
 import sqlite3
 
-conn = sqlite3.connect('kino_miasto.db')
+conn = sqlite3.connect('db.sqlite3')
 cursor = conn.cursor()
-
-try:
-    cursor.execute('''
-        CREATE TABLE kino (
-            id INTEGER PRIMARY KEY,
-            nazwa TEXT,
-            adres TEXT
-        )
-    ''')
-except Exception as e:
-    pass
-
-try:
-    cursor.execute('''
-        CREATE TABLE sala (
-            id INTEGER PRIMARY KEY,
-            kino_id INTEGER,
-            numer TEXT,
-            wielkosc TEXT,
-            FOREIGN KEY (kino_id) REFERENCES kino(id)
-        )
-    ''')
-except Exception as e:
-    pass
-
-try:
-    cursor.execute('''
-        CREATE TABLE seans (
-            id INTEGER PRIMARY KEY,
-            sala_id INTEGER,
-            film_id INTEGER,
-            data TEXT,
-            godzina TEXT,
-            FOREIGN KEY (sala_id) REFERENCES sala(id),
-            FOREIGN KEY (film_id) REFERENCES film(id)
-        )
-    ''')
-except Exception as e:
-    pass
-
-try:
-    cursor.execute('''
-        CREATE TABLE film (
-            id INTEGER PRIMARY KEY,
-            nazwa TEXT,
-            kategoria TEXT,
-            rezyser TEXT,
-            nazwa_jpg TEXT
-        )
-    ''')
-except Exception as e:
-    pass
-
-try:
-    cursor.execute('''
-        CREATE TABLE uzytkownik (
-            id INTEGER PRIMARY KEY,
-            login TEXT,
-            haslo TEXT
-        )
-    ''')
-except Exception as e:
-    pass
-
-try:
-    cursor.execute('''
-        CREATE TABLE rezerwacja (
-            id INTEGER PRIMARY KEY,
-            data TEXT,
-            rzad TEXT,
-            miejsce TEXT,
-            uzytkownik_id INTEGER,
-            seans_id INTEGER,
-            FOREIGN KEY (uzytkownik_id) REFERENCES uzytkownik(id),
-            FOREIGN KEY (seans_id) REFERENCES seans(id)
-        )
-    ''')
-except Exception as e:
-    pass
-
 
 # 2 kina, rozne lokalizacje
 kina = [
-            (1, "Kino Miasto", "Warszawa ul. Fiołkowa 13"),
-            (2, "Kino Miasto", "Warszawa ul. Różana 7")
+            (1, "Kino Fiołkowa", "Warszawa ul. Fiołkowa 13"),
+            (2, "Kino Różana", "Warszawa ul. Różana 7")
 ]
 
 try:
@@ -96,10 +16,10 @@ except Exception as e:
 
 # kazde kino ma 2 sale
 sale = [
-            (1, 1, "1", "duza"),
-            (2, 1, "2", "mala"),
-            (3, 2, "1", "duza"),
-            (4, 2, "2", "mala")
+            (1, "1", "duza", 1),
+            (2, "1", "mala", 2),
+            (3, "2", "duza", 1),
+            (4, "2", "mala", 2)
 ]
 
 try:
@@ -108,117 +28,114 @@ except Exception as e:
     pass
 
 seanse = [
-            (1, 1, 8, "22.01.2024", "14.00"),
-            (2, 1, 7, "22.01.2024", "17.00"),
-            (3, 1, 3, "22.01.2024", "20.00"),
-            (4, 2, 6, "22.01.2024", "14.00"),
-            (5, 2, 6, "22.01.2024", "17.00"),
-            (6, 2, 7, "22.01.2024", "20.00"),
-            (7, 3, 8, "22.01.2024", "14.00"),
-            (8, 3, 7, "22.01.2024", "17.00"),
-            (9, 3, 3, "22.01.2024", "20.00"),
-            (10, 4, 6, "22.01.2024", "14.00"),
-            (11, 4, 6, "22.01.2024", "17.00"),
-            (12, 4, 7, "22.01.2024", "20.00"),
+    (1, "22.01.2024", "14.00", 8, 1),
+    (2, "22.01.2024", "17.00", 7, 1),
+    (3, "22.01.2024", "20.00", 3, 1),
 
-            (13, 1, 8, "23.01.2024", "14.00"),
-            (14, 1, 4, "23.01.2024", "17.00"),
-            (15, 1, 3, "23.01.2024", "20.00"),
-            (16, 2, 6, "23.01.2024", "14.00"),
-            (17, 2, 3, "23.01.2024", "17.00"),
-            (18, 2, 7, "23.01.2024", "20.00"),
-            (19, 3, 8, "23.01.2024", "14.00"),
-            (20, 3, 4, "23.01.2024", "17.00"),
-            (21, 3, 3, "23.01.2024", "20.00"),
-            (22, 4, 6, "23.01.2024", "14.00"),
-            (23, 4, 3, "23.01.2024", "17.00"),
-            (24, 4, 7, "23.01.2024", "20.00"),
+    (4, "22.01.2024", "14.00", 6, 2),
+    (5, "22.01.2024", "17.00", 6, 2),
+    (6, "22.01.2024", "20.00", 7, 2),
 
-            (25, 1, 8, "24.01.2024", "14.00"),
-            (26, 1, 9, "24.01.2024", "17.00"),
-            (27, 1, 4, "24.01.2024", "20.00"),
-            (28, 2, 6, "24.01.2024", "14.00"),
-            (29, 2, 1, "24.01.2024", "17.00"),
-            (30, 2, 3, "24.01.2024", "20.00"),
-            (31, 3, 8, "24.01.2024", "14.00"),
-            (32, 3, 9, "24.01.2024", "17.00"),
-            (33, 3, 4, "24.01.2024", "20.00"),
-            (34, 4, 6, "24.01.2024", "14.00"),
-            (35, 4, 1, "24.01.2024", "17.00"),
-            (36, 4, 3, "24.01.2024", "20.00"),
+    (7, "22.01.2024", "14.00", 8, 3),
+    (8, "22.01.2024", "17.00", 7, 3),
+    (9, "22.01.2024", "20.00", 3, 3),
 
-            (37, 1, 10, "25.01.2024", "14.00"),
-            (38, 1, 9, "25.01.2024", "17.00"),
-            (39, 1, 4, "25.01.2024", "20.00"),
-            (40, 2, 8, "25.01.2024", "14.00"),
-            (41, 2, 2, "25.01.2024", "17.00"),
-            (42, 2, 1, "25.01.2024", "20.00"),
-            (43, 3, 10, "25.01.2024", "14.00"),
-            (44, 3, 9, "25.01.2024", "17.00"),
-            (45, 3, 4, "25.01.2024", "20.00"),
-            (46, 4, 8, "25.01.2024", "14.00"),
-            (47, 4, 2, "25.01.2024", "17.00"),
-            (48, 4, 1, "25.01.2024", "20.00"),
+    (10, "22.01.2024", "14.00", 6, 4),
+    (11, "22.01.2024", "17.00", 6, 4),
+    (12, "22.01.2024", "20.00", 7, 4),
 
-            (49, 1, 10, "26.01.2024", "14.00"),
-            (50, 1, 9, "26.01.2024", "17.00"),
-            (51, 1, 2, "26.01.2024", "20.00"),
-            (52, 2, 8, "26.01.2024", "14.00"),
-            (53, 2, 4, "26.01.2024", "17.00"),
-            (54, 2, 4, "26.01.2024", "20.00"),
-            (55, 3, 10, "26.01.2024", "14.00"),
-            (56, 3, 9, "26.01.2024", "17.00"),
-            (57, 3, 2, "26.01.2024", "20.00"),
-            (58, 4, 8, "26.01.2024", "14.00"),
-            (59, 4, 4, "26.01.2024", "17.00"),
-            (60, 4, 4, "26.01.2024", "20.00"),
+    (13, "23.01.2024", "14.00", 8, 1),
+    (14, "23.01.2024", "17.00", 4, 1),
+    (15, "23.01.2024", "20.00", 3, 1),
 
-            (61, 1, 5, "27.01.2024", "14.00"),
-            (62, 1, 2, "27.01.2024", "17.00"),
-            (63, 1, 1, "27.01.2024", "20.00"),
-            (64, 2, 10, "27.01.2024", "14.00"),
-            (65, 2, 9, "27.01.2024", "17.00"),
-            (66, 2, 2, "27.01.2024", "20.00"),
-            (67, 3, 5, "27.01.2024", "14.00"),
-            (68, 3, 2, "27.01.2024", "17.00"),
-            (69, 3, 1, "27.01.2024", "20.00"),
-            (70, 4, 10, "27.01.2024", "14.00"),
-            (71, 4, 9, "27.01.2024", "17.00"),
-            (72, 4, 2, "27.01.2024", "20.00"),
+    (16, "23.01.2024", "14.00", 6, 2),
+    (17, "23.01.2024", "17.00", 3, 2),
+    (18, "23.01.2024", "20.00", 7, 2),
 
-            (73, 1, 5, "28.01.2024", "14.00"),
-            (74, 1, 5, "28.01.2024", "17.00"),
-            (75, 1, 1, "28.01.2024", "20.00"),
-            (76, 2, 10, "28.01.2024", "14.00"),
-            (77, 2, 9, "28.01.2024", "17.00"),
-            (78, 2, 2, "28.01.2024", "20.00"),
-            (79, 3, 5, "28.01.2024", "14.00"),
-            (80, 3, 5, "28.01.2024", "17.00"),
-            (81, 3, 1, "28.01.2024", "20.00"),
-            (82, 4, 10, "28.01.2024", "14.00"),
-            (83, 4, 9, "28.01.2024", "17.00"),
-            (84, 4, 2, "28.01.2024", "20.00")
-]
+    (19, "23.01.2024", "14.00", 8, 3),
+    (20, "23.01.2024", "17.00", 4, 3),
+    (21, "23.01.2024", "20.00", 3, 3),
+
+    (22, "23.01.2024", "14.00", 6, 4),
+    (23, "23.01.2024", "17.00", 3, 4),
+    (24, "23.01.2024", "20.00", 7, 4),
+
+    (25, "24.01.2024", "14.00", 8, 1),
+    (26, "24.01.2024", "17.00", 9, 1),
+    (27, "24.01.2024", "20.00", 4, 1),
+
+    (28, "24.01.2024", "14.00", 6, 2),
+    (29, "24.01.2024", "17.00", 1, 2),
+    (30, "24.01.2024", "20.00", 3, 2),
+
+    (31, "24.01.2024", "14.00", 8, 3),
+    (32, "24.01.2024", "17.00", 9, 3),
+    (33, "24.01.2024", "20.00", 4, 3),
+
+    (34, "24.01.2024", "14.00", 6, 4),
+    (35, "24.01.2024", "17.00", 1, 4),
+    (36, "24.01.2024", "20.00", 3, 4),
+
+    (37, "25.01.2024", "14.00", 10, 1),
+    (38, "25.01.2024", "17.00", 9, 1),
+    (39, "25.01.2024", "20.00", 4, 1),
+
+    (40, "25.01.2024", "14.00", 8, 2),
+    (41, "25.01.2024", "17.00", 2, 2),
+    (42, "25.01.2024", "20.00", 1, 2),
+
+    (43, "25.01.2024", "14.00", 10, 3),
+    (44, "25.01.2024", "17.00", 9, 3),
+    (45, "25.01.2024", "20.00", 4, 3),
+
+    (46, "25.01.2024", "14.00", 8, 4),
+    (47, "25.01.2024", "17.00", 2, 4),
+    (48, "25.01.2024", "20.00", 1, 4),
+
+    (49, "26.01.2024", "14.00", 10, 1),
+    (50, "26.01.2024", "17.00", 9, 1),
+    (51, "26.01.2024", "20.00", 2, 1),
+
+    (52, "26.01.2024", "14.00", 8, 2),
+    (53, "26.01.2024", "17.00", 4, 2),
+    (54, "26.01.2024", "20.00", 4, 2),
+
+    (55, "26.01.2024", "14.00", 10, 3),
+    (56, "26.01.2024", "17.00", 9, 3),
+    (57, "26.01.2024", "20.00", 2, 3),
+
+    (58, "26.01.2024", "14.00", 8, 4),
+    (59, "26.01.2024", "17.00", 4, 4),
+    (60, "26.01.2024", "20.00", 4, 4),
+
+    (61, "27.01.2024", "14.00", 5, 1),
+    (62, "27.01.2024", "17.00", 2, 1),
+    (63, "27.01.2024", "20.00", 1, 1),
+
+    (64, "27.01.2024", "14.00", 10, 2),
+    (65, "27.01.2024", "17.00", 9, 2),
+    (66, "27.01.2024", "20.00", 2, 2),
+     ]
 try:
     cursor.executemany("INSERT INTO seans VALUES (?,?,?,?,?)", seanse)
 except Exception as e:
     pass
 
 filmy = [
-            (1, "Aquaman", "Akcja", "James Wan", "aqua.jpg"),
-            (2, "Igrzyska Śmierci: Ballada ptaków i węży", "Akcja", "Francis Lawrence", "ballada.jpg"),
-            (3, "Barbie", "Komedia", "Greta Gerwig", "barbie.jpg"),
-            (4, "Oppenheimer", "Biograficzny", "Christopher Nolan", "oppenheimer.jpg"),
-            (5, "Spider-Man: Poprzez multiwersum", "Animacja", "Joaquim Dos Santos & Kemp Powers", "spider-man.jpg"),
-            (6, "Świąteczna niespodzianka", "Familijny", "Andrea Eckerbom", "swieta.jpg"),
-            (7, "Szybcy i wściekli 10", "Akcja", "Louis Leterrier", "szybcy.jpg"),
-            (8, "Trolle 3", "Animacja", "Walt Dohrn", "trolle.jpg"),
-            (9, "Wonka", "Fantasy", "Paul King", "wonka.jpg"),
-            (10, "Między nami żywiołami", "Animacja", "Peter Sohn", "zywioly.jpg")
+            (1, "Aquaman",                                  "Akcja",        "Sci-Fi",       "19 grudnia 2018",      "2 godz. 23 min.",  "USA, Australia",               "James Wan",                        "Jason Momoa, Amber Heard, Willem Dafoe",                           "aqua.jpg"),
+            (2, "Igrzyska Śmierci: Ballada ptaków i węży",  "Akcja",        "Sci-Fi",       "17 listopada 2023",    "2 godz. 37 min.",  "USA",                          "Francis Lawrence",                 "Tom Blyth, Rachel Zegler, Viola Davis",                            "ballada.jpg"),
+            (3, "Barbie",                                   "Dramat",       "Komedia",      "21 lipca 2023",        "1 godz. 54 min.",  "USA, Kanada",                  "Greta Gerwig",                     "Margot Robbie, Ryan Gosling, America Ferrera",                     "barbie.jpg"),
+            (4, "Oppenheimer",                              "Biograficzny", "Dramat",       "21 lipca 2023",        "3 godz.",          "USA, Wielka Brytania",         "Christopher Nolan",                "Cillian Murphy, Emily Blunt, Matt Damon",                          "oppenheimer.jpg"),
+            (5, "Spider-Man: Poprzez multiwersum",          "Animacja",     "Akcja",        "2 czerwca 2023",       "2 godz. 20 min.",  "USA",                          "Joaquim Dos Santos, Kemp Powers",  "Shameik Moore, Hailee Steinfeld, Brian Tyree Henry",               "spider-man.jpg"),
+            (6, "Świąteczna niespodzianka",                 "Familijny",    "Świąteczny",   "9 grudnia 2022",       "1 godz. 18 min.",  "Norwegia",                     "Andrea Eckerbom",                  "Marte Klerck-Nilssen, John F. Brungot, Lene Kongsvik Johansen",    "swieta.jpg"),
+            (7, "Szybcy i wściekli 10",                     "Akcja",        " ",            "19 maja 2023",         "2 godz. 21 min.",  "USA, Chiny, Japonia",          "Louis Leterrier",                  "Vin Diesel, Michelle Rodriguez, Jason Momoa",                      "szybcy.jpg"),
+            (8, "Trolle 3",                                 "Animacja",     "Familijny",    "1 grudnia 2023",       "1 godz. 31 min.",  "USA",                          "Walt Dohrn",                       "Anna Kendrick, Justin Timberlake, Camila Cabello",                 "trolle.jpg"),
+            (9, "Wonka",                                    "Fantasy",      "Komedia",      "14 grudnia 2023",      "1 godz. 53 min.",  "USA, Kanada, Wielka Brytania", "Paul King",                        "Timothée Chalamet, Calah Lane, Keegan-Michael Key",                "wonka.jpg"),
+            (10, "Między nami żywiołami",                   "Animacja",     "Przygodowy",   "14 lipca 2023",        "1 godz. 41 min.",  "USA",                          "Peter Sohn",                       "Leah Lewis, Mamoudou Athie, Ronnie Del Carmen",                    "zywioly.jpg")
 ]
 
 try:
-    cursor.executemany("INSERT INTO film VALUES (?,?,?,?,?)", filmy)
+    cursor.executemany("INSERT INTO film VALUES (?,?,?,?,?,?,?,?,?,?)", filmy)
 except Exception as e:
     pass
 

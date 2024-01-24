@@ -2,6 +2,7 @@ html {
   height: 100%;
   width: 100%;
 }
+
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
@@ -50,28 +51,33 @@ section {
 
 
 }
-#plakat{
+
+#plakat {
 
   margin: 0;
   padding: 10px;
   width: 23%;
-  height: auto
+  height: auto;
   font-size: 20px;
   text-align: left;
   float: inherit;
 
 
 }
-#obrazek:hover{opacity: 0;
-image-resolution: from-image
+
+#obrazek:hover {
+  opacity: 0;
+  image-resolution: from-image
 }
+
 .promo {
   width: 15%;
   height: auto;
   float: left
 }
 
-#promki{width:100% ;
+#promki {
+  width: 100%;
   height: auto;
   float: left;
   align-content: center;
@@ -79,13 +85,15 @@ image-resolution: from-image
   text-align: center;
   color: black;
 }
+
 img {
   max-width: 100%;
   float: left;
   height: auto;
   margin: 20px;
 }
-#bilety{
+
+#bilety {
   width: 300px;
   height: auto;
   background-color: red;
@@ -105,14 +113,19 @@ footer {
   text-align: center;
 
 }
-p{
+
+p {
   text-align: center
 }
-h4{
+
+h4 {
   font-size: 13px;
   color: darkgray
 }
-a{color: white}
+
+a {
+  color: white
+}
 
 /* Spoderman Style */
 
@@ -120,69 +133,211 @@ a{color: white}
   display: flex;
   align-items: flex-start;
   padding: 20px;
-  color: white; 
-  background-color: black; 
+  color: white;
+  background-color: black;
 }
+
 .movie-image {
   flex: 1;
   text-align: center;
 }
+
 #movie-poster {
-  width: auto; /* Adjust as needed */
-  height: 500px; /* Adjust as needed */
+  width: auto;
+  /* Adjust as needed */
+  height: 500px;
+  /* Adjust as needed */
 }
+
 .movie-details {
   flex: 2;
   padding-left: 20px;
 }
+
 .categories {
   font-style: italic;
 }
+
 .movie-description summary,
 .cinema-list summary {
   cursor: pointer;
-  color: aqua; /* Or any other color from your styles.css */
+  color: aqua;
 }
+
 .additional-info {
   margin-top: 20px;
 }
+
 .select-cinema {
-margin: 20px 0;
+  margin: 20px 0;
 }
+
 .select-cinema label {
-display: block;
-margin-bottom: 10px;
-color: white; /* Adjust the color to match your design */
+  display: block;
+  margin-bottom: 10px;
+  color: white;
+  /* Adjust the color to match your design */
 }
+
 .select-cinema select {
-width: 100%;
-padding: 10px;
-background-color: #333; /* Dark background */
-color: white; /* Light text */
-border: 1px solid #444; /* Slight border for visibility */
-border-radius: 5px; /* Rounded corners */}
+  width: 100%;
+  padding: 10px;
+  background-color: #333;
+  /* Dark background */
+  color: black;
+  /* Light text */
+  border: 1px solid #444;
+  /* Slight border for visibility */
+  border-radius: 5px;
+  /* Rounded corners */
+}
+
 .showtime {
-  background-color: #333; /* ciemnofioletowe tło */
-  color: #FFFFFF; /* biały tekst */
-  border: 1px solid #640F5F; /* biała obramówka */
-  margin: 5px; /* odstępy między kafelkami */
-  padding: 20px; /* padding wewnątrz kafelków */
-  text-align: center; /* wyśrodkowany tekst */
-  font-weight: bold; /* pogrubiona czcionka */
-  font-size: 1.1em; /* nieco większa czcionka */
-  border-radius: 2px; /* zaokrąglenie rogów */
-  cursor: pointer; /* zmiana kursora na wskaźnik */
-  transition: transform 0.3s; /* animacja transformacji */
+  background-color: #333;
+  /* ciemnofioletowe tło */
+  color: #FFFFFF;
+  /* biały tekst */
+  border: 1px solid #640F5F;
+  /* biała obramówka */
+  margin: 5px;
+  /* odstępy między kafelkami */
+  padding: 20px;
+  /* padding wewnątrz kafelków */
+  text-align: center;
+  /* wyśrodkowany tekst */
+  font-weight: bold;
+  /* pogrubiona czcionka */
+  font-size: 1.1em;
+  /* nieco większa czcionka */
+  border-radius: 2px;
+  /* zaokrąglenie rogów */
+  cursor: pointer;
+  /* zmiana kursora na wskaźnik */
+  transition: transform 0.3s;
+  /* animacja transformacji */
 }
 
 .showtime:hover {
-  transform: scale(1.05); /* lekkie powiększenie przy najechaniu */
+  transform: scale(1.05);
+  /* lekkie powiększenie przy najechaniu */
 }
 
 #showtimes-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* wyśrodkowanie kafelków */
+  justify-content: center;
+  /* wyśrodkowanie kafelków */
+}
+
+.movie-container {
+  margin: 20px 0;
+}
+
+.movie-container select {
+  background-color: #fff;
+  border: 0;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-left: 10px;
+  padding: 5px 15px 5px 15px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.container {
+  perspective: 1000px;
+  margin-bottom: 30px;
+}
+
+.seat {
+  background-color: #444451;
+  height: 26px;
+  width: 32px;
+  margin: 3px;
+  font-size: 20px;
+  text-align: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.seat.selected {
+  background-color: green;
+}
+
+.seat.sold {
+  background-color: #fff;
+}
+
+.seat:nth-of-type(2) {
+  margin-right: 18px;
+}
+
+.seat:nth-last-of-type(2) {
+  margin-left: 18px;
+}
+
+.seat:not(.sold):hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.showcase .seat:not(.sold):hover {
+  cursor: default;
+  transform: scale(1);
+}
+
+.showcase {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #777;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.showcase li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+}
+
+.showcase li small {
+  margin-left: 2px;
+}
+
+.row {
+  display: flex;
+}
+
+.row_text {
+  text-align: center;
+  font-size: 10px;
+  vertical-align: bottom;
+}
+
+.screen {
+  background-color: #fff;
+  height: 120px;
+  width: 100%;
+  margin: 15px 0;
+  transform: rotateX(-48deg);
+  box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+}
+
+.seating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+#submit {
+  color: black;
 }
 
   

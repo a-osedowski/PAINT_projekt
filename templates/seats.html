@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static "styles.css" %}" />
+  <title>Movie Seat Booking</title>
+</head>
+
+<body>
+  <header>
+         
+        <a href={% url 'home' %}>
+      <h1 style="width: 30%;float: left;color: orange">KinoMiasto</h1>
+    </a>
+        <nav>
+        <a href={% url 'home' %}>Strona główna</a>
+            <a href="#rep">Repertuar</a>
+        <a href="{% url 'cennik' %}">Cennik</a>
+        <a href={% url 'contact' %}>Kontakt</a>
+        </nav>
+    </header>
+
+  <div style="width: 100%" class="seating">
+    <div class="movie-container">
+      <p id="movie"> Film: {{ film.nazwa }}</p>
+    </div>
+
+    <ul class="showcase">
+      <li>
+        <div class="seat"></div>
+        <small>Dostępne</small>
+      </li>
+      <li>
+        <div class="seat selected"></div>
+        <small>Wybrane</small>
+      </li>
+      <li>
+        <div class="seat sold"></div>
+        <small>Zajęte</small>
+      </li>
+    </ul>
+    <div class="container">
+      <div class="screen"></div>
+
+      <div class="row">
+        <p class="row_text">A</p>
+        <div class="seat" id="A1">1</div>
+        <div class="seat" id="A2">2</div>
+        <div class="seat" id="A3">3</div>
+        <div class="seat" id="A4">4</div>
+        <div class="seat" id="A5">5</div>
+        <div class="seat" id="A6">6</div>
+        <div class="seat" id="A7">7</div>
+        <div class="seat" id="A8">8</div>
+        <p class="row_text">A</p>
+      </div>
+
+      <div class="row">
+        <p class="row_text">B</p>
+        <div class="seat" id="B1">1</div>
+        <div class="seat" id="B2">2</div>
+        <div class="seat" id="B3">3</div>
+        <div class="seat" id="B4">4</div>
+        <div class="seat" id="B5">5</div>
+        <div class="seat" id="B6">6</div>
+        <div class="seat" id="B7">7</div>
+        <div class="seat" id="B8">8</div>
+        <p class="row_text">B</p>
+      </div>
+      <div class="row">
+        <p class="row_text">C</p>
+        <div class="seat" id="C1">1</div>
+        <div class="seat" id="C2">2</div>
+        <div class="seat" id="C3">3</div>
+        <div class="seat" id="C4">4</div>
+        <div class="seat" id="C5">5</div>
+        <div class="seat" id="C6">6</div>
+        <div class="seat" id="C7">7</div>
+        <div class="seat" id="C8">8</div>
+        <p class="row_text">C</p>
+      </div>
+      <div class="row">
+        <p class="row_text">D</p>
+        <div class="seat" id="D1">1</div>
+        <div class="seat" id="D2">2</div>
+        <div class="seat" id="D3">3</div>
+        <div class="seat" id="D4">4</div>
+        <div class="seat" id="D5">5</div>
+        <div class="seat" id="D6">6</div>
+        <div class="seat" id="D7">7</div>
+        <div class="seat" id="D8">8</div>
+        <p class="row_text">D</p>
+      </div>
+      <div class="row">
+        <p class="row_text">E</p>
+        <div class="seat" id="E1">1</div>
+        <div class="seat" id="E2">2</div>
+        <div class="seat" id="E3">3</div>
+        <div class="seat" id="E4">4</div>
+        <div class="seat" id="E5">5</div>
+        <div class="seat" id="E6">6</div>
+        <div class="seat" id="E7">7</div>
+        <div class="seat" id="E8">8</div>
+        <p class="row_text">E</p>
+      </div>
+      <div class="row">
+        <p class="row_text">F</p>
+        <div class="seat" id="F1">1</div>
+        <div class="seat" id="F2">2</div>
+        <div class="seat" id="F3">3</div>
+        <div class="seat" id="F4">4</div>
+        <div class="seat" id="F5">5</div>
+        <div class="seat" id="F6">6</div>
+        <div class="seat" id="F7">7</div>
+        <div class="seat" id="F8">8</div>
+        <p class="row_text">F</p>
+      </div>
+    </div>
+
+    <p class="text">
+      Liczba wybranych miejsc: <span id="count">0</span> Cena: <span id="total">0</span>
+    </p>
+    <br>
+    <br>
+    <br>
+
+    <form action="/kup_bilet/sukces/" method="post">
+    {% csrf_token %}
+        <div class="select-seans">
+          <label for="seansSelect">Wybierz swój seans</label>
+          <select id="seansSelect" name="seans">
+              {% for seans in seanse %}
+            <option value="{{ seans.id }}"> {{ seans.godzina }} - {{ seans.data }} - Sala: {{ seans.sala_numer }}, {{ seans.sala_wielkosc }}</option>
+              {%  endfor %}
+          </select><br><br>
+      <label for="fname">Imię:</label>
+      <input type="text" id="fname" name="fname"><br><br>
+      <label for="lname">Nazwisko:</label>
+      <input type="text" id="lname" name="lname"><br><br>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email"size="30"/>
+      <input type="submit" value="Potwierdź" id="submit">
+    </form>
+
+  </div>
+  <script src="{% static "script_seats.js" %}"></script>
+</body>
+
+</html>

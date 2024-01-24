@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,22 +6,21 @@
   <meta charset="utf-8">
   <title>Cennik</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css"> <!-- Make sure this path is correct -->
+  <link rel="stylesheet" href={% static "styles.css" %}>
 
-  <!-- Add additional styles if needed -->
 </head>
 
 <body>
   <header>
 
-    <a href="index.html">
+    <a href={% url 'home' %}>
       <h1 style="width: 30%;float: left;color: orange">KinoMiasto</h1>
     </a>
     <nav>
-      <a href="#">Strona główna</a>
-      <a href="#">Repertuar</a>
-      <a href="cennik.html">Cennik</a>
-      <a href="#">Kontakt</a>
+      <a href={% url 'home' %}>Strona główna</a>
+        <a href="{% url 'home' %}#rep">Repertuar</a>
+      <a href={% url 'cennik' %}>Cennik</a>
+      <a href={% url 'contact' %}>Kontakt</a>
     </nav>
   </header>
 
@@ -29,7 +29,7 @@
 
 
       <div class="movie-image">
-        <img style="width:90%;float: left;opacity: 0.8" src="i1.jpg" alt="ludzie_kino">
+        <img style="width:90%;float: left;opacity: 0.8" src={% static "i1.jpg" %} alt="ludzie_kino">
       </div>
 
 
@@ -104,63 +104,10 @@
             </tr>
           </tbody>
         </table>
-
         <p>Do każdego biletu zakupionego przez stronę internetową oraz aplikację mobilną doliczona zostanie oplata
           internetowa w wysokości 1,50 zł, w skład której wchodzą: koszty serwisu dostarczenia i realizacji biletu.</p>
       </div>
-
-
     </div>
-
   </main>
-
-
-  <section id="bilety">
-    <a href="">
-      <h1>KUP BILETY</h1>
-    </a>
-  </section>
-
-
-
-
-
-
-
-  <script>
-    var cinemaSelect = document.getElementById('cinemaSelect');
-    var showtimesContainer = document.getElementById('showtimes-container');
-
-    // This function updates the showtimes when a cinema is selected
-    function updateShowtimes(cinema) {
-      // Clear existing showtimes
-      showtimesContainer.innerHTML = '';
-
-      // Here you would typically get these showtimes from a server or define them for each cinema
-      var showtimes = {
-        'mlociny': ['10:00', '10:50', '11:50', '12:35', '13:40', '14:40', '15:30', '16:30', '17:30', '19:20', '20:20'],
-        // Add showtimes for other cinemas as needed
-      };
-      // Check if the selected cinema has showtimes defined
-      if (showtimes[cinema]) {
-        // Loop over the showtimes and create elements for each
-        showtimes[cinema].forEach(function (time) {
-          var showtimeDiv = document.createElement('div');
-          showtimeDiv.className = 'showtime';
-          showtimeDiv.innerHTML = `<span class="time">${time}</span><span class="format"> 2D, PL</span>`;
-          showtimesContainer.appendChild(showtimeDiv);
-        });
-      }
-    }
-
-    // Add an event listener to the select element
-    cinemaSelect.addEventListener('change', function () {
-      updateShowtimes(this.value);
-    });
-
-    // Initialize with the first cinema's showtimes
-    updateShowtimes(cinemaSelect.value);
-  </script>
 </body>
-
 </html>
