@@ -24,6 +24,7 @@ class Sala(models.Model):
     numer = models.CharField(max_length=150, db_column='numer')
     wielkosc = models.CharField(max_length=150, db_column='wielkosc')
 
+
     def __str__(self):
         return self.kino
 
